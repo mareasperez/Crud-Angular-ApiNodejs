@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import {gamesController} from '../controllers/gamesControler'
+import { gamesController } from '../controllers/gamesControler'
 
 class GamesRoutes {
     public router: Router = Router();
@@ -7,12 +7,15 @@ class GamesRoutes {
     constructor() {
         this.config();
     }
-    config():void{
-        this.router.get('/',gamesController.index);
-        //this.router.post('/',)
+    config(): void {
+        this.router.get('/', gamesController.list);
+        this.router.get('/:id', gamesController.getOne)
+        this.router.post('/', gamesController.create);
+        this.router.delete('/:id', gamesController.delete);
+        this.router.put('/:id', gamesController.update);
     }
 
 }
 
-const gamesRoutes =  new GamesRoutes();
+const gamesRoutes = new GamesRoutes();
 export default gamesRoutes.router;
