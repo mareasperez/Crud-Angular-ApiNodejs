@@ -21,6 +21,7 @@ class GamesController {
     public async create(req: Request, res: Response): Promise<void> {
         await pool.query('INSERT INTO games set ?', [req.body]);
         console.log(req.body);
+        res.json({message:"juego creado"});
     }
 
     public async delete(req: Request, res: Response):Promise<void> {
