@@ -7,11 +7,14 @@ import { Game } from 'src/app/models/games';
   styleUrls: ['./game-list.component.css']
 })
 export class GameListComponent implements OnInit {
-  @HostBinding('class')  classes = 'row';
+  @HostBinding('class') classes = 'row';
   games: any = [];
   constructor(private gamesService: GamesService) { }
 
   ngOnInit() {
+    this.getGames();
+  }
+  getGames() {
     this.gamesService.getGames().subscribe(
       res => {
         console.log(res);
@@ -20,5 +23,16 @@ export class GameListComponent implements OnInit {
       err => console.error(err)
     );
   }
+  deleteGame(id: string) {
+    this.gamesService.deleteGame(id).subscribe(
+      res => {
+        console.log(res);
+        this.getGames();
+      },
+      err => {
+        console.log(err);
+      }
 
+    );
+  }
 }

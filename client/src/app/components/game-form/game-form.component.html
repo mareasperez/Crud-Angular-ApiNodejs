@@ -1,4 +1,4 @@
-<div class="col-md-4 offset-md-4">
+<div class="col-md-4 offset-md-2">
   <div class="card">
     <div class="card-body">
     <form>
@@ -11,10 +11,19 @@
     <div class="form-group">
       <input type="url" name="image" placeholder="image" [(ngModel)]="game.image" class="form-control">
     </div>
-    <button class="btn btn-success btn-block" (click)="saveNewGame()">
+    <button class="btn btn-success btn-block" (click)="edit ?  updateGame() : saveNewGame()">
       Save
     </button>
     </form>
   </div>
 </div>
+</div>
+<div class="col-md-4">
+  <div class="card card-body text-center">
+    <img [src]="game.image == '' ? '/assets/noimage.png' : game.image" class="card-img-top">
+    <h3>{{game.id}}. {{game.title == '' ? 'Game Title' : game.title}}</h3>
+    <p>{{game.description == '' ? 'write a description' : game.description}}</p>
+    <p>{{game.created_at | date: 'yyyy-MM-dd'}}</p>
+
+  </div>
 </div>

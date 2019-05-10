@@ -27,7 +27,7 @@ class GamesController {
     public async delete(req: Request, res: Response):Promise<void> {
         const { id } = req.params;
         const games = await pool.query('delete  from games where id =? ', [id]);
-        res.status(404).json({ text: "juego no encontrado" })
+        res.json({ message: "The game was deleted" });
        
     }
 
